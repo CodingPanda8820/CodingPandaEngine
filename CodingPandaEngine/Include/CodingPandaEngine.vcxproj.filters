@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01.Engine">
+      <UniqueIdentifier>{bcc00cb7-a1d3-4274-815b-a0c0769b543f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\01.Device">
+      <UniqueIdentifier>{e882f33d-88b0-4b4e-bdcf-0a7668871997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\02.Math">
+      <UniqueIdentifier>{6f455004-f1e7-4f4e-83d4-fc9dd045f65d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\03.Ref">
+      <UniqueIdentifier>{fa582ce5-d06e-471a-b11c-77e83c06242f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\04.SharedPtr">
+      <UniqueIdentifier>{4aa5eed5-77a3-4d8e-85d7-5a6d34304b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\05.Path">
+      <UniqueIdentifier>{1d1321f6-5993-408d-8038-fdbce30af363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Engine\06.Timer">
+      <UniqueIdentifier>{da9d9b80-e6ae-4f26-a747-d9c0bdbb70df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource">
+      <UniqueIdentifier>{8df22ee0-f875-4276-9781-8f5e2f69112f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\01.Mesh">
+      <UniqueIdentifier>{8fe75fa7-8304-4666-901d-22847f9aeda3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>01.Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>01.Engine\01.Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Flag.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ref.h">
+      <Filter>01.Engine\03.Ref</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedPtr.h">
+      <Filter>01.Engine\04.SharedPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>01.Engine\05.Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>01.Engine\06.Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Mesh\SpriteMesh.h">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Mesh\Mesh.h">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\ResourceManager.h">
+      <Filter>02.Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp">
+      <Filter>01.Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>01.Engine\01.Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>01.Engine\02.Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ref.cpp">
+      <Filter>01.Engine\03.Ref</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
+      <Filter>01.Engine\05.Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>01.Engine\06.Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Mesh\SpriteMesh.cpp">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Mesh\Mesh.cpp">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\ResourceManager.cpp">
+      <Filter>02.Resource</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
