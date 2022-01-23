@@ -1,21 +1,50 @@
-﻿  Matrix.cpp
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see D:\C++\Review_DirectX\CodingPandaEngine_Work\CodingPandaEngine\CodingPandaEngine\Bin\ColorMesh.cso
+  Component.cpp
+  ObjectComponent.cpp
+  SceneComponent.cpp
+  SpriteComponent.cpp
+  Transform.cpp
+  Device.cpp
+  Engine.cpp
+  GameObject.cpp
+  Matrix.cpp
   PathManager.cpp
+  Ref.cpp
+  RenderManager.cpp
+  Material.cpp
+  MaterialManager.cpp
+  Mesh.cpp
+  MeshManager.cpp
+  SpriteMesh.cpp
+  ResourceManager.cpp
+  ColorMeshShader.cpp
+  ComputeShader.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  ConstantBuffer.cpp
+  ConstantBufferBase.cpp
+  GraphicShader.cpp
+  Shader.cpp
+  ShaderManager.cpp
+  TransformConstantBuffer.cpp
+  Scene.cpp
+  SceneManager.cpp
+  SceneMode.cpp
+  SceneResource.cpp
+  Timer.cpp
+  Vector2.cpp
+  Vector3.cpp
   Vector4.cpp
   코드를 생성하고 있습니다...
-  CodingPandaEngine.vcxproj -> D:\C++\Review_DirectX\CodingPandaEngine\CodingPandaEngine\Bin\CodingPandaEngine_Debug.lib
+  CodingPandaEngine.vcxproj -> D:\C++\Review_DirectX\CodingPandaEngine_Work\CodingPandaEngine\CodingPandaEngine\Bin\CodingPandaEngine_Debug.lib
+  .\CodingPandaEngine\Bin\CodingPandaEngine_Debug.idb
   .\CodingPandaEngine\Bin\CodingPandaEngine_Debug.lib
-  1개 파일이 복사되었습니다.
+  .\CodingPandaEngine\Bin\CodingPandaEngine_Debug.pdb
+  3개 파일이 복사되었습니다.
+  .\CodingPandaEngine\Bin\CodingPandaEngine_Debug.idb
   .\CodingPandaEngine\Bin\CodingPandaEngine_Debug.lib
-  1개 파일이 복사되었습니다.
-  .\CodingPandaEngine\Include\Device.h
-  .\CodingPandaEngine\Include\Flag.h
-  .\CodingPandaEngine\Include\GameInfo.h
-  .\CodingPandaEngine\Include\Matrix.h
-  .\CodingPandaEngine\Include\PathManager.h
-  .\CodingPandaEngine\Include\Ref.h
-  .\CodingPandaEngine\Include\SharedPtr.h
-  .\CodingPandaEngine\Include\Timer.h
-  .\CodingPandaEngine\Include\Resource\ResourceManager.h
-  .\CodingPandaEngine\Include\Resource\Mesh\Mesh.h
-  .\CodingPandaEngine\Include\Resource\Mesh\SpriteMesh.h
-  11개 파일이 복사되었습니다.
+  .\CodingPandaEngine\Bin\CodingPandaEngine_Debug.pdb
+  3개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.

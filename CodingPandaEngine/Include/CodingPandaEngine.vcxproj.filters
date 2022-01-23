@@ -40,6 +40,54 @@
     <Filter Include="02.Resource\01.Mesh">
       <UniqueIdentifier>{8fe75fa7-8304-4666-901d-22847f9aeda3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Resource\02.Shader">
+      <UniqueIdentifier>{ad73f0f5-7ee7-4503-994a-5e580a998aa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\02.Shader\01.HLSL">
+      <UniqueIdentifier>{afa18785-a938-4a78-8c18-ab1970b2e803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene">
+      <UniqueIdentifier>{490975b2-4665-45ff-92dd-149f026da42f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject">
+      <UniqueIdentifier>{4425933b-1ead-49ab-9aa2-25f301bb6e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component">
+      <UniqueIdentifier>{1194d7be-fe73-46ec-a84b-bc2eda6dbaf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\01.SceneComponent">
+      <UniqueIdentifier>{2b059dfb-9199-492f-8084-55fffbba8433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\01.SceneComponent\01.MeshComponent">
+      <UniqueIdentifier>{027608ca-3523-4741-b5be-9b79cd6e540a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Component\02.ObjectComponent">
+      <UniqueIdentifier>{21bab517-7ec1-4cfc-b661-05df9abdfedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\03.Material">
+      <UniqueIdentifier>{263ab18f-96d4-46c8-a59c-ec4d076c4925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\02.Shader\02.ShaderClass">
+      <UniqueIdentifier>{8f4f3911-ea31-40b1-92a4-82cc2b44dcef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\02.Shader\02.ShaderClass\01.ColorMesh">
+      <UniqueIdentifier>{c678422d-17aa-41dd-8d08-9233b9a66eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\02.Resource">
+      <UniqueIdentifier>{5b9cef9b-468b-4a2f-ab3a-11131be7e4b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\01.Mode">
+      <UniqueIdentifier>{dbfd59d6-691e-4b50-b82c-998ccb736bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\02.Shader\03.ConstantBuffer">
+      <UniqueIdentifier>{fc9dc8a4-e2b8-4fec-9578-256db1de79d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Resource\02.Shader\03.ConstantBuffer\01.Transform">
+      <UniqueIdentifier>{a31cbacf-5804-4884-9e08-dace383b561a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Render">
+      <UniqueIdentifier>{941b1abe-831b-45ae-b74e-fd8fb0b5c54d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -81,14 +129,80 @@
     <ClInclude Include="Timer.h">
       <Filter>01.Engine\06.Timer</Filter>
     </ClInclude>
-    <ClInclude Include="Resource\Mesh\SpriteMesh.h">
-      <Filter>02.Resource\01.Mesh</Filter>
+    <ClInclude Include="Resource\ResourceManager.h">
+      <Filter>02.Resource</Filter>
     </ClInclude>
     <ClInclude Include="Resource\Mesh\Mesh.h">
       <Filter>02.Resource\01.Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Resource\ResourceManager.h">
-      <Filter>02.Resource</Filter>
+    <ClInclude Include="Resource\Mesh\SpriteMesh.h">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\Shader.h">
+      <Filter>02.Resource\02.Shader\02.ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\ComputeShader.h">
+      <Filter>02.Resource\02.Shader\02.ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\GraphicShader.h">
+      <Filter>02.Resource\02.Shader\02.ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\ColorMeshShader.h">
+      <Filter>02.Resource\02.Shader\02.ShaderClass\01.ColorMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\ShaderManager.h">
+      <Filter>02.Resource\02.Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Mesh\MeshManager.h">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneMode.h">
+      <Filter>03.Scene\01.Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>03.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>03.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>04.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Component.h">
+      <Filter>05.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ObjectComponent.h">
+      <Filter>05.Component\02.ObjectComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SceneComponent.h">
+      <Filter>05.Component\01.SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SpriteComponent.h">
+      <Filter>05.Component\01.SceneComponent\01.MeshComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Material\Material.h">
+      <Filter>02.Resource\03.Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Material\MaterialManager.h">
+      <Filter>02.Resource\03.Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneResource.h">
+      <Filter>03.Scene\02.Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Transform.h">
+      <Filter>05.Component\01.SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\ConstantBuffer.h">
+      <Filter>02.Resource\02.Shader\03.ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\ConstantBufferBase.h">
+      <Filter>02.Resource\02.Shader\03.ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Shader\TransformConstantBuffer.h">
+      <Filter>02.Resource\02.Shader\03.ConstantBuffer\01.Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderManager.h">
+      <Filter>06.Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,14 +233,88 @@
     <ClCompile Include="Timer.cpp">
       <Filter>01.Engine\06.Timer</Filter>
     </ClCompile>
-    <ClCompile Include="Resource\Mesh\SpriteMesh.cpp">
-      <Filter>02.Resource\01.Mesh</Filter>
+    <ClCompile Include="Resource\ResourceManager.cpp">
+      <Filter>02.Resource</Filter>
     </ClCompile>
     <ClCompile Include="Resource\Mesh\Mesh.cpp">
       <Filter>02.Resource\01.Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Resource\ResourceManager.cpp">
-      <Filter>02.Resource</Filter>
+    <ClCompile Include="Resource\Mesh\SpriteMesh.cpp">
+      <Filter>02.Resource\01.Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Resource\Shader\Shader.cpp">
+      <Filter>02.Resource\02.Shader\02.ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\ComputeShader.cpp">
+      <Filter>02.Resource\02.Shader\02.ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\GraphicShader.cpp">
+      <Filter>02.Resource\02.Shader\02.ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\ColorMeshShader.cpp">
+      <Filter>02.Resource\02.Shader\02.ShaderClass\01.ColorMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\ShaderManager.cpp">
+      <Filter>02.Resource\02.Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Mesh\MeshManager.cpp">
+      <Filter>02.Resource\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneMode.cpp">
+      <Filter>03.Scene\01.Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>03.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>03.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>04.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Component.cpp">
+      <Filter>05.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\ObjectComponent.cpp">
+      <Filter>05.Component\02.ObjectComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SceneComponent.cpp">
+      <Filter>05.Component\01.SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SpriteComponent.cpp">
+      <Filter>05.Component\01.SceneComponent\01.MeshComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Material\Material.cpp">
+      <Filter>02.Resource\03.Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Material\MaterialManager.cpp">
+      <Filter>02.Resource\03.Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneResource.cpp">
+      <Filter>03.Scene\02.Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Transform.cpp">
+      <Filter>05.Component\01.SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\ConstantBuffer.cpp">
+      <Filter>02.Resource\02.Shader\03.ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\ConstantBufferBase.cpp">
+      <Filter>02.Resource\02.Shader\03.ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Shader\TransformConstantBuffer.cpp">
+      <Filter>02.Resource\02.Shader\03.ConstantBuffer\01.Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RenderManager.cpp">
+      <Filter>06.Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\Shader\ColorMesh.fx">
+      <Filter>02.Resource\02.Shader\01.HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\ShaderInfo.fx">
+      <Filter>02.Resource\02.Shader\01.HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

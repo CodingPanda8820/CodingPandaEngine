@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineMath.h"
+#include "Matrix.h"
 
 struct Vector3
 {
@@ -79,7 +80,14 @@ struct Vector3
 
 	float Dot(const Vector3& v)	const;
 	Vector3 Cross(const Vector3& v)	const;
+
 	float Angle(const Vector3& v)	const;
+	Vector3 ConvertAngle();
+
+	// w = 0
+	Vector3 TransformNormal(const Matrix& m)	const;
+	// w = 1
+	Vector3 TransformCoord(const Matrix& m)		const;
 
 	XMVECTOR Convert()	const;
 	void Convert(const XMVECTOR& v);

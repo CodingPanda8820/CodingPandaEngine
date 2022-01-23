@@ -17,7 +17,6 @@ Direct3D 의 초기화
 7.	렌더 대상 뷰와 깊이.스텐실 뷰를 Direct3D가 사용할 수 있도록 렌더링 파이프라인의
 	출력 병합기 단계에 묶는다.
 8.	뷰포트를 설정한다.
-
 */
 
 class CDevice
@@ -31,8 +30,11 @@ private:
 
 	IDXGISwapChain* m_SwapChain;
 
+	// BackBuffer에 픽셀을 쓰기 위해 RenderTargetView를 만들고
+	// BackBuffer를 이 TargetView에 연결해준다.
 	ID3D11RenderTargetView* m_TargetView;
 
+	// Depth&Stencil 값을 쓰기 위해 DepthStencilView를 만들고 연결해준다.
 	ID3D11DepthStencilView* m_DepthView;
 
 	HWND m_hWnd;

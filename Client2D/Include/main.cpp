@@ -2,6 +2,9 @@
 #include "Engine.h"
 #include "resource.h"
 
+#include "Scene/SceneManager.h"
+#include "Scene/MainScene.h"
+
 #ifdef _DEBUG
 
 #pragma comment(lib, "CodingPandaEngine_Debug.lib")
@@ -20,6 +23,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		CEngine::DestroyInst();
 		return 0;
 	}
+
+	CSceneManager::GetInst()->CreateSceneMode<CMainScene>();
 
 	int Ret = CEngine::GetInst()->Run();
 

@@ -14,6 +14,10 @@ protected:
 	bool	m_Enable;
 	bool	m_Active;
 	size_t	m_TypeID;
+	
+public:
+	virtual void Save(FILE* File);
+	virtual void Load(FILE* File);
 
 public:
 	void Enable(bool bEnable)
@@ -81,6 +85,11 @@ public:
 	bool CheckType()
 	{
 		return m_TypeID == typeid(T).hash_code();
+	}
+
+	size_t GetTypeID()	const
+	{
+		return m_TypeID;
 	}
 };
 

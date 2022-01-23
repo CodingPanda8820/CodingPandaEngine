@@ -15,6 +15,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Engine", "02.Engine", "{ECE8D187-01FE-4EAD-9B6F-D73CD8AC3D3F}"
 	ProjectSection(SolutionItems) = preProject
 		Copy.bat = Copy.bat
+		exclude.txt = exclude.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Editor", "03.Editor", "{FFC33E33-74AE-4197-93E2-C88493CD4BF1}"

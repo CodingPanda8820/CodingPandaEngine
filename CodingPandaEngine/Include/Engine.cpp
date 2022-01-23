@@ -1,18 +1,42 @@
 #include "Engine.h"
+#include "Device.h"
+#include "PathManager.h"
+#include "Timer.h"
+#include "Resource/ResourceManager.h"
+#include "Scene/SceneManager.h"
+#include "Render/RenderManager.h"
 
 DEFINITION_SINGLE(CEngine)
 
 bool CEngine::m_Loop = true;
 
-CEngine::CEngine()
+CEngine::CEngine():
+	m_ClearColor{},
+	m_Timer(nullptr)
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc(280);
+
+	//m_ClearColor[1] = 1.f;
 }
 
 CEngine::~CEngine()
 {
+	CSceneManager::DestroyInst();
+
+	CRenderManager::DestroyInst();
+
+	CPathManager::DestroyInst();
+
+	CResourceManager::DestroyInst();
+
+	CDevice::DestroyInst();
+
+	SAFE_DELETE(m_Timer);
 }
 
-bool CEngine::Init(HINSTANCE hInst, const TCHAR * Name, unsigned int Width, unsigned int Height, int IconID, bool WindowMode)
+bool CEngine::Init(HINSTANCE hInst, const TCHAR * Name, unsigned int Width,
+				   unsigned int Height, int IconID, bool WindowMode)
 {
 	m_hInst = hInst;
 
@@ -21,6 +45,39 @@ bool CEngine::Init(HINSTANCE hInst, const TCHAR * Name, unsigned int Width, unsi
 
 	Register(Name, IconID);
 	Create(Name);
+
+	return Init(hInst, m_hWnd, Width, Height, WindowMode);
+}
+
+bool CEngine::Init(HINSTANCE hInst, HWND hWnd, unsigned int Width, unsigned int Height, bool WindowMode)
+{
+	m_hInst = hInst;
+	m_hWnd = hWnd;
+
+	m_RS.Width = Width;
+	m_RS.Height = Height;
+
+	m_Timer = new CTimer;
+
+	// Device 초기화
+	if (!CDevice::GetInst()->Init(m_hWnd, Width, Height, WindowMode))
+		return false;
+
+	// 경로 관리자 초기화
+	if (!CPathManager::GetInst()->Init())
+		return false;
+
+	// 리소스 관리자 초기화
+	if (!CResourceManager::GetInst()->Init())
+		return false;
+
+	// 렌더링 관리자 초기화
+	if (!CRenderManager::GetInst()->Init())
+		return false;
+
+	// 장면 관리자 초기화
+	if (!CSceneManager::GetInst()->Init())
+		return false;
 
 	return true;
 }
@@ -45,10 +102,55 @@ int CEngine::Run()
 			// 윈도우의 데드타임 : 메세지가 올때까지 대기하고 있는 시간.
 			// GetMessage의 경우 메세지가 없을때 다른 일을 할 수 없기 때문에
 			// PeekMessage를 이용해 메세지가 없을 경우 해당 구간으로 들어온다.
+			Logic();
 		}
 	}
 
 	return (int)msg.wParam;
+}
+
+void CEngine::Logic()
+{
+	m_Timer->Update();
+
+	float DeltaTime = m_Timer->GetDeltaTime();
+
+	if (Update(DeltaTime))
+		return;
+
+	if (PostUpdate(DeltaTime))
+		return;
+
+	Render(DeltaTime);
+}
+
+bool CEngine::Update(float DeltaTime)
+{
+	if (CSceneManager::GetInst()->Update(DeltaTime))
+		return true;
+
+	return false;
+}
+
+bool CEngine::PostUpdate(float DeltaTime)
+{
+	if (CSceneManager::GetInst()->PostUpdate(DeltaTime))
+		return true;
+
+	return false;
+}
+
+bool CEngine::Render(float DeltaTime)
+{
+	CDevice::GetInst()->RenderStart();
+	CDevice::GetInst()->ClearRenderTarget(m_ClearColor);
+	CDevice::GetInst()->ClearDepthStencil(1.f, 0);
+
+	CRenderManager::GetInst()->Render();
+
+	CDevice::GetInst()->Flip();
+
+	return true;
 }
 
 ATOM CEngine::Register(const TCHAR * Name, int IconID)
@@ -120,12 +222,13 @@ LRESULT CEngine::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		PAINTSTRUCT ps;
 
 		HDC hdc = BeginPaint(hWnd, &ps);
-		TextOut(hdc, 0, 0, TEXT("Hello, Windows!"), 15);
+		// TextOut(hdc, 0, 0, TEXT("Hello, Windows!"), 15);
 		EndPaint(hWnd, &ps);
 	}
 	break;
 	case WM_DESTROY:
 		m_Loop = false;
+		PostQuitMessage(0);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

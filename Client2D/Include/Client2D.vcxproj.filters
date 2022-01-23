@@ -13,15 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="01.Scene">
+      <UniqueIdentifier>{17d6e1cc-92eb-401a-b756-3385c707b98f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object">
+      <UniqueIdentifier>{1f94159d-5444-4f94-839e-9a8cc518a631}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\01.Player">
+      <UniqueIdentifier>{b792c7c4-3464-49d6-aa2e-d2c087842c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Object\02.Bullet">
+      <UniqueIdentifier>{11923b54-4782-48ac-bd90-703e4f4bcfdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\MainScene.cpp">
+      <Filter>01.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Player2D.cpp">
+      <Filter>02.Object\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Bullet.cpp">
+      <Filter>02.Object\02.Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MainScene.h">
+      <Filter>01.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Player2D.h">
+      <Filter>02.Object\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Bullet.h">
+      <Filter>02.Object\02.Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

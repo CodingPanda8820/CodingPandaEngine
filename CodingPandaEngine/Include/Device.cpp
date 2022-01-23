@@ -16,6 +16,8 @@ CDevice::~CDevice()
 	SAFE_RELEASE(m_TargetView);
 	SAFE_RELEASE(m_DepthView);
 
+	SAFE_RELEASE(m_SwapChain);
+
 	if (m_Context)
 		m_Context->ClearState();
 
@@ -92,6 +94,8 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 	// BackBuffer 와 연결된 RenderTargetView 를 생성한다.
 	m_Device->CreateRenderTargetView(BackBuffer, nullptr, &m_TargetView);
 
+	// IDXGISwapChain::GetBuffer를 호출하면 BackBuffer에 대한 COM의 RefCount가 상승한다.
+	// 그러므로 후면버퍼를 사용한 후 해제해준다.
 	SAFE_RELEASE(BackBuffer);
 
 	// 깊이 버퍼를 만든다.
@@ -106,6 +110,8 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 	DepthDesc.SampleDesc.Quality = 0;
 	DepthDesc.Usage = D3D11_USAGE_DEFAULT; // 텍스처의 용도를 뜻하는 필드
 	DepthDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	DepthDesc.CPUAccessFlags = 0;
+	DepthDesc.MiscFlags = 0;
 	
 
 	ID3D11Texture2D* DepthBuffer = nullptr;
@@ -118,8 +124,11 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 
 	D3D11_VIEWPORT VP = {};
 
+	VP.TopLeftX = 0;
+	VP.TopLeftY = 0;
 	VP.Width = (float)Width;
 	VP.Height = (float)Height;
+	VP.MinDepth = 0.f;
 	VP.MaxDepth = 1.f;
 
 	m_Context->RSSetViewports(1, &VP);
@@ -136,17 +145,22 @@ void CDevice::ClearDepthStencil(float Depth, unsigned char Stencil)
 {
 	// 응용프로그램은 어떤 렌더링이던지 수행하기전에 먼저 후면 버퍼를 기본 색상으로 지운다.
 	// 이때 깊이 버퍼도 기본값으로 지워진다.
-
 	m_Context->ClearDepthStencilView(m_DepthView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,
 									 Depth, Stencil);
 }
 
 void CDevice::RenderStart()
 {
+	// View들을 파이프라인의 출력 병합기 단계에 묶는다.
+	// 이 과정을 거쳐야 비로소 자원들이 파이프라인의 렌더 대상과 깊이&스텐실 버퍼로 작용하게 된다.
+	// 렌더 대상의 개수,
+	// 파이프라인에 묶을 RenderTargetView의 포인터들
+	// 파이프라인에 묶을 Depth & Stencil View의 포인터
 	m_Context->OMSetRenderTargets(1, &m_TargetView, m_DepthView);
 }
 
 void CDevice::Flip()
 {
+	// SwapChain 제시(Present)
 	m_SwapChain->Present(0, 0);
 }

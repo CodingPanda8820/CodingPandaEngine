@@ -1,4 +1,3 @@
-
 #include "Mesh.h"
 #include "../../Device.h"
 
@@ -8,6 +7,12 @@ CMesh::CMesh()
 
 CMesh::~CMesh()
 {
+	size_t Size = m_vecContainer.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		SAFE_DELETE(m_vecContainer[i]);
+	}
 }
 
 bool CMesh::Init()
@@ -20,22 +25,32 @@ bool CMesh::CreateBuffer(Buffer_Type Type, void * Data, int Size, int Count,
 {
 	D3D11_BUFFER_DESC Desc = {};
 
-	Desc.ByteWidth = Size * Count;
-	Desc.Usage = Usage;
+	Desc.ByteWidth = Size * Count; // 정점 버퍼의 크기(바이트 단위)
+	Desc.Usage = Usage; // 버퍼가 쓰이는 방식, 용도
 
+	// BindFlags : Resource가 파이프라인에 묶이는 용도
 	if (Type == Buffer_Type::Vertex)
 		Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	else
 		Desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
-	if (Usage == D3D11_USAGE_DYNAMIC)
+	if (Usage == D3D11_USAGE_DYNAMIC) // 응용 프로그램(CPU)가 Resource의 내용을 자주 변경
 		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	else if (Usage == D3D11_USAGE_STAGING)
+	else if (Usage == D3D11_USAGE_STAGING) // 응용 프로그램(CPU)가 Resource의 복사본을 읽어야 한다면
 		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ | D3D11_CPU_ACCESS_WRITE;
+
+	//Desc.MiscFlags;
+	//Desc.StructureByteStride : 구조적 버퍼(Structured Buffer)에 저장된 원소 하나의 크기(바이트 단위)
 
 	D3D11_SUBRESOURCE_DATA BufferData = {};
 
+	// 정점 버퍼를 초기화할 자료를 담은 시스템 메모리 배열을 가리키는 포인터
+	// 정점 n개를 담는 버퍼를 초기화하는 경우, 초기화가 제대로 일어나려면
+	// 그 배열의 원소가 적어도 n개이어야 한다.
 	BufferData.pSysMem = Data;
+	
+	// BufferData.SysMemPitch; 정점 버퍼에는 쓰이지 않음
+	// BufferData.SysMemSlicePitch; 정점 버퍼에는 쓰이지 않음
 
 	if (FAILED(CDevice::GetInst()->GetDevice()->CreateBuffer(&Desc, &BufferData, Buffer)))
 		return false;
@@ -78,31 +93,27 @@ void CMesh::Render()
 
 	for (size_t i = 0; i < Size; ++i)
 	{
-		unsigned int Stride = m_vecContainer[i].VB.Size;
-		unsigned int Offset = 0;
+		unsigned int Stride = m_vecContainer[i]->VB.Size; // 해당 정점 버퍼의 한 원소의 바이트 단위 크기
+		unsigned int Offset = 0; // 오프셋들의 배열의 첫 원소를 가리키는 포인터
 
-		CDevice::GetInst()->GetContext()->IASetPrimitiveTopology(m_vecContainer[i].Primitive);
-		CDevice::GetInst()->GetContext()->IASetVertexBuffers(0, 1, &m_vecContainer[i].VB.Buffer, &Stride, &Offset);
+		CDevice::GetInst()->GetContext()->IASetPrimitiveTopology(m_vecContainer[i]->Primitive);
+		CDevice::GetInst()->GetContext()->IASetVertexBuffers(0, 1, &m_vecContainer[i]->VB.Buffer, &Stride, &Offset);
 
-		size_t IdxCount = m_vecContainer[i].vecIB.size();
+		size_t IdxCount = m_vecContainer[i]->vecIB.size();
 
 		if (IdxCount > 0)
 		{
 			for (size_t j = 0; j < IdxCount; ++j)
 			{
-				CDevice::GetInst()->GetContext()->IASetIndexBuffer(
-					m_vecContainer[i].vecIB[j].Buffer,
-					m_vecContainer[i].vecIB[j].Fmt, 0);
-				CDevice::GetInst()->GetContext()->DrawIndexed(
-					m_vecContainer[i].vecIB[j].Count, 0, 0);
+				CDevice::GetInst()->GetContext()->IASetIndexBuffer(m_vecContainer[i]->vecIB[j].Buffer,
+																   m_vecContainer[i]->vecIB[j].Format, 0);
+				CDevice::GetInst()->GetContext()->DrawIndexed(m_vecContainer[i]->vecIB[j].Size, 0, 0);
 			}
 		}
 		else
 		{
-			CDevice::GetInst()->GetContext()->IASetIndexBuffer(
-				nullptr, DXGI_FORMAT_UNKNOWN, 0);
-			CDevice::GetInst()->GetContext()->Draw(
-				m_vecContainer[i].VB.Count, 0);
+			CDevice::GetInst()->GetContext()->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
+			CDevice::GetInst()->GetContext()->Draw(m_vecContainer[i]->VB.Count, 0);
 		}
 	}
 }

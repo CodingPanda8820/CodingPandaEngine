@@ -95,13 +95,13 @@ struct IndexBuffer
 	ID3D11Buffer* Buffer;
 	int Size;
 	int Count;
-	DXGI_FORMAT Fmt;
+	DXGI_FORMAT Format;
 
 	IndexBuffer():
 		Buffer(nullptr),
 		Size(0),
 		Count(0),
-		Fmt(DXGI_FORMAT_UNKNOWN)
+		Format(DXGI_FORMAT_UNKNOWN)
 	{
 	}
 
@@ -116,4 +116,18 @@ struct MeshContainer
 	VertexBuffer				VB;
 	std::vector<IndexBuffer>	vecIB;
 	D3D11_PRIMITIVE_TOPOLOGY	Primitive;
+};
+
+struct TransformCBuffer
+{
+	Matrix	matWorld;
+	Matrix	matView;
+	Matrix	matProj;
+	Matrix	matWV;
+	Matrix	matWVP;
+	Matrix	matVP;
+	Vector3 Pivot;
+	float	Empty0;
+	Vector3	MeshSize;
+	float	Empty1;
 };

@@ -136,6 +136,11 @@ void Matrix::RotationZ(float z)
 	m = XMMatrixRotationZ(DegreeToRadian(z));
 }
 
+void Matrix::RotationQuaternion(const Vector4 & Quat)
+{
+	m = XMMatrixRotationQuaternion(Quat.Convert());
+}
+
 void Matrix::RotationAxis(const Vector3 & Axis, float Angle)
 {
 	m = XMMatrixRotationAxis(Axis.Convert(), DegreeToRadian(Angle));
@@ -228,6 +233,11 @@ Matrix Matrix::StaticRotationY(float y)
 Matrix Matrix::StaticRotationZ(float z)
 {
 	return XMMatrixRotationZ(DegreeToRadian(z));
+}
+
+Matrix Matrix::StaticRotationQuaternion(const Vector4 & Quat)
+{
+	return XMMatrixRotationQuaternion(Quat.Convert());
 }
 
 Matrix Matrix::StaticRotationAxis(const Vector3 & Axis, float Angle)

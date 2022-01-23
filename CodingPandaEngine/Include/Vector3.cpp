@@ -365,6 +365,21 @@ float Vector3::Angle(const Vector3 & v) const
 	return Angle;
 }
 
+Vector3 Vector3::ConvertAngle()
+{
+	return Vector3(DegreeToRadian(x), DegreeToRadian(y), DegreeToRadian(z));
+}
+
+Vector3 Vector3::TransformNormal(const Matrix & m) const
+{
+	return Vector3(XMVector3TransformNormal(Convert(), m.m));
+}
+
+Vector3 Vector3::TransformCoord(const Matrix & m) const
+{
+	return Vector3(XMVector3TransformCoord(Convert(), m.m));
+}
+
 XMVECTOR Vector3::Convert() const
 {
 	return XMLoadFloat3((XMFLOAT3*)this);

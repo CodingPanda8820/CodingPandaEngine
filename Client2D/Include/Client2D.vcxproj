@@ -80,11 +80,16 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>../../Engine/Include/;$(IncludePath)</IncludePath>
     <LibraryPath>../Bin/;$(LibraryPath)</LibraryPath>
+    <OutDir>../Bin/</OutDir>
+    <IntDir>../BinObj/</IntDir>
+    <TargetName>$(ProjectName)_Debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../../Engine/Include/;$(IncludePath)</IncludePath>
     <LibraryPath>../Bin/;$(LibraryPath)</LibraryPath>
+    <OutDir>../Bin/</OutDir>
+    <IntDir>../BinObj/</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,9 +149,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object\Bullet.cpp" />
+    <ClCompile Include="Object\Player2D.cpp" />
+    <ClCompile Include="Scene\MainScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object\Bullet.h" />
+    <ClInclude Include="Object\Player2D.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene\MainScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client2D.rc" />
